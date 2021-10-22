@@ -1,2 +1,4 @@
-The things that we need to discribe and some how some code to be implemented
-this is a test for my self.
+How to DownLoad NodeJs 
+sudo apt update
+sudo apt install nodejs
+sudo apt upgrade
