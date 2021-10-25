@@ -1,4 +1,0 @@
-How to DownLoad NodeJs 
-sudo apt update
-sudo apt install nodejs
-sudo apt upgrade
