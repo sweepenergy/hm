@@ -1,0 +1,33 @@
+How to DownLoad NodeJs: 
+
+sudo apt update
+sudo apt install nodejs
+sudo apt upgrade
+
+
+Some youtube videos that helps to learn github:
+https://www.youtube.com/watch?v=HVsySz-h9r4&ab_channel=CoreySchafer
+
+How to keep personal token and remove this same token, 
+when you make a new token:
+
+git config --global credential.helper chache
+git config --global --unset credential.helper
+
+Useful comands:
+git clone <given url from github>   - how to get a persons work on github on your machine
+git init                            - start tracking a file anywhere you put it, will see .gitignore in files
+git pull                            - get files that you don't have
+git push                            - give any update to the remote branch
+git fetch <origin>                  - gets any branches that you don't have locally
+git fetch <name of specific one>    - get a specific branch you don't have locally          
+git remote
+
+git branch                          - looks at branches that are avaliable
+git branch <name of branch>         - changes to the branch
+git branch <new name>               - creates a new branch
+
+git status                          - check the status (are there any changes)
+git add -A                          - this will commit all changes
+git add <name of work>              - will only commit what you selected
+git commit -A -m "<add message>"    - commit all changes and give a discripted message
