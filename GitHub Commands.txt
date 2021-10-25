@@ -5,6 +5,8 @@ sudo apt install nodejs
 sudo apt upgrade
 
 How to download os-utils:
+https://www.npmjs.com/package/os-utils
+https://www.npmjs.com/package/node-os-utils - this is the second code that I saw that i didn't try
 
 sudo apt update
 sudo apt upgrade
