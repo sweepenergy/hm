@@ -4,6 +4,16 @@ sudo apt update
 sudo apt install nodejs
 sudo apt upgrade
 
+How to download os-utils:
+
+sudo apt update
+sudo apt upgrade
+sudo apt install npm
+npm install node-os-utils --save      - This is other code that I saw that might work, but use the bottom one (don't do this one)
+npm install os-utils
+
+How to run Nodejs:
+node Start.js
 
 Some youtube videos that helps to learn github:
 https://www.youtube.com/watch?v=HVsySz-h9r4&ab_channel=CoreySchafer
@@ -30,4 +40,6 @@ git branch <new name>               - creates a new branch
 git status                          - check the status (are there any changes)
 git add -A                          - this will commit all changes
 git add <name of work>              - will only commit what you selected
-git commit -A -m "<add message>"    - commit all changes and give a discripted message
+git commit -a -m "<add message>"    - commit all changes and give a discripted message
+
+
