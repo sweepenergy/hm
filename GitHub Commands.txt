@@ -17,6 +17,17 @@ npm install os-utils
 How to run Nodejs:
 node Start.js
 
+
+Some other things our mentor said that we need to look up:
+
+https://docs.sweepapi.com/
+jwt token postman
+how to make a web server interact with an api
+emv token
+https://docs.docker.com/engine/reference/commandline/system_df/
+how to make a web server interact with an api
+
+
 Some youtube videos that helps to learn github:
 https://www.youtube.com/watch?v=HVsySz-h9r4&ab_channel=CoreySchafer
 
