@@ -27,3 +27,5 @@ console.log('Total Free Memmory (%): ' + os.freememPercentage() + '\n');
 exports.platform = function(){ 
     return process.platform;
 }
+var ip = req.connection.remoteAddress;
+console.log(ip);
