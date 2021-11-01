@@ -25,7 +25,7 @@ npm install storage-device-info
 
 
 How ot get ip address:
-https://www.itsolutionstuff.com/post/how-to-get-client-ip-address-in-node-jsexample.html
+https://www.semicolonworld.com/question/44875/get-local-ip-address-in-node-js
 
 
 How to run Nodejs:
