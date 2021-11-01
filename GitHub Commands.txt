@@ -11,7 +11,6 @@ https://www.npmjs.com/package/node-os-utils - this is the second code that I saw
 sudo apt update
 sudo apt upgrade
 sudo apt install npm
-npm install node-os-utils --save      - This is other code that I saw that might work, but use the bottom one (don't do this one)
 npm install os-utils
 
 
@@ -26,6 +25,13 @@ npm install storage-device-info
 
 How ot get ip address:
 https://www.semicolonworld.com/question/44875/get-local-ip-address-in-node-js
+
+
+INodes:
+https://stackoverflow.com/questions/653096/how-to-free-inode-usage
+
+df -i
+df -ih
 
 
 How to run Nodejs:
