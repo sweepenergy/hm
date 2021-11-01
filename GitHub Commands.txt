@@ -24,6 +24,10 @@ sudo apt install npm                   - If you have already done the os-utils t
 npm install storage-device-info
 
 
+How ot get ip address:
+https://www.itsolutionstuff.com/post/how-to-get-client-ip-address-in-node-jsexample.html
+
+
 How to run Nodejs:
 node Start.js
 
@@ -47,25 +51,46 @@ when you make a new token:
 git config --global user.name '<your user name>'
 git config --global email.name '<your email>'
 
+https://stackoverflow.com/questions/5343068/is-there-a-way-to-cache-https-credentials-for-pushing-commits
+
 git config --global credential.helper 'chache --timeout = <number of second to keep it>'
 git config --global --unset credential.helper
+
+
 
 Useful comands:
 git clone <given url from github>   - how to get a persons work on github on your machine
 git init                            - start tracking a file anywhere you put it, will see .gitignore in files
 git pull                            - get files that you don't have
 git push                            - give any update to the remote branch
-git fetch <origin>                  - gets any branches that you don't have locally
-git fetch <name of specific one>    - get a specific branch you don't have locally          
-git remote
+
+git fetch origin                    - gets any branches that you don't have locally
+git fetch <name of specific one>    - get a specific branch you don't have locally
+git fetch -a                        - gets all branches you don't have on your local machine
+git remote                          - what is the remote called, github
 
 git branch                          - looks at branches that are avaliable
 git branch <name of branch>         - changes to the branch
 git branch <new name>               - creates a new branch
+git branch -a                       - checkouts all branch, even remotes
+
 
 git status                          - check the status (are there any changes)
 git add -A                          - this will commit all changes
 git add <name of work>              - will only commit what you selected
 git commit -a -m "<add message>"    - commit all changes and give a discripted message
 
+https://stackoverflow.com/questions/11628074/how-to-make-git-ignore-my-changes
 
+git commit .                        - removes all commits
+git stash                           - save your changes on stack
+git stash pop                       - put your changes back in
+
+
+How to update a Branch with main:
+https://stackoverflow.com/questions/3876977/update-git-branches-from-master/3877000
+
+git checkout <branch name>
+git merge origin
+ctrl + x 
+git push origin <branch name>
