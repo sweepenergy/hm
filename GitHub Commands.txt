@@ -14,6 +14,16 @@ sudo apt install npm
 npm install node-os-utils --save      - This is other code that I saw that might work, but use the bottom one (don't do this one)
 npm install os-utils
 
+
+How to download the storage-device-info:
+https://www.npmjs.com/package/storage-device-info
+
+sudo apt update 
+sudo apt upgrade
+sudo apt install npm                   - If you have already done the os-utils then there is no need to do this part
+npm install storage-device-info
+
+
 How to run Nodejs:
 node Start.js
 
@@ -34,7 +44,10 @@ https://www.youtube.com/watch?v=HVsySz-h9r4&ab_channel=CoreySchafer
 How to keep personal token and remove this same token, 
 when you make a new token:
 
-git config --global credential.helper chache
+git config --global user.name '<your user name>'
+git config --global email.name '<your email>'
+
+git config --global credential.helper 'chache --timeout = <number of second to keep it>'
 git config --global --unset credential.helper
 
 Useful comands:
