@@ -3,6 +3,7 @@ var os = require('os-utils');
 
 var storage = require ("storage-device-info");
 
+
 //This gets the CPU Usage at a certain point
 os.cpuUsage(function(v){
     console.log('CPU Usage (%): ' + v+ '\n');
@@ -40,7 +41,44 @@ storage.getPartitionSpace("/opt", function(error, space){
         console.log("Free Storage Space: " + space.freeMegaBytes + "\n");
     }
 });
+    
 
-exports.platform = function(){ 
-    return process.platform;
+var
+    // Local ip address that we're trying to calculate
+    address
+    // Provides a few basic operating-system related utility functions (built-in)
+    ,os = require('os')
+    // Network interfaces
+    ,ifaces = os.networkInterfaces();
+
+
+// Iterate over interfaces ...
+for (var dev in ifaces) {
+
+    // ... and find the one that matches the criteria
+    var iface = ifaces[dev].filter(function(details) {
+        return details.family === 'IPv4' && details.internal === false;
+    });
+
+    if(iface.length > 0) address = iface[0].address;
 }
+
+// Print the result
+console.log('IP Address: ' + address + '\n');
+
+
+
+//this uses the linux command df -ih
+const { exec } = require("child_process");
+
+exec("df -ih", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+});
