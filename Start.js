@@ -66,3 +66,18 @@ for (var dev in ifaces) {
 // Print the result
 console.log('IP Address: ' + address + '\n');
 
+
+// This is for the INodes
+const { exec } = require("child_process");
+
+exec("df -ih", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+});
