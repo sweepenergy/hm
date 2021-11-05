@@ -66,3 +66,14 @@ for (var dev in ifaces) {
 // Print the result
 console.log('IP Address: ' + address + '\n');
 
+
+const data = { 
+    "IP": address,
+    "totalmemory": 22,
+    "freememory": os.freemem(),
+	"CPUUsage" : os.cpuUsage(),
+	"Inodes" : false,
+	"Bandwidth" : os.loadavg(0.01),
+    "storage" : space.freeMegaBytes
+    }
+    console.log(data.address);
