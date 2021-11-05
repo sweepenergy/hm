@@ -1,4 +1,4 @@
-console.log("Congratulations! You got node.js to run" + '\n');
+
 var os = require('os-utils');
 
 var storage = require ("storage-device-info");
