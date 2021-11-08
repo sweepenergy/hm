@@ -67,7 +67,6 @@ for (var dev in ifaces) {
 console.log('IP Address: ' + address + '\n');
 
 
-<<<<<<< HEAD
 const data = { 
     "IP": address,
     "totalmemory": 22,
@@ -78,7 +77,6 @@ const data = {
     "storage" : space.freeMegaBytes
     }
     console.log(data.address);
-=======
 // This is for the INodes
 const { exec } = require("child_process");
 
@@ -93,4 +91,3 @@ exec("df -ih", (error, stdout, stderr) => {
     }
     console.log(`stdout: ${stdout}`);
 });
->>>>>>> 330b9cd3e18aa16c57ce346b88e941030d6ca713
