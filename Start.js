@@ -1,4 +1,5 @@
 
+setInterval(function(){
 var os = require('os-utils');
 
 var storage = require ("storage-device-info");
@@ -67,16 +68,6 @@ for (var dev in ifaces) {
 console.log('IP Address: ' + address + '\n');
 
 
-const data = { 
-    "IP": address,
-    "totalmemory": 22,
-    "freememory": os.freemem(),
-	"CPUUsage" : os.cpuUsage(),
-	"Inodes" : false,
-	"Bandwidth" : os.loadavg(0.01),
-    "storage" : space.freeMegaBytes
-    }
-    console.log(data.address);
 // This is for the INodes
 const { exec } = require("child_process");
 
@@ -91,3 +82,18 @@ exec("df -ih", (error, stdout, stderr) => {
     }
     console.log(`stdout: ${stdout}`);
 });
+
+
+}, 3000);
+
+// const data = { 
+//     "IP": address,
+//     "totalmemory": 22,
+//     "freememory": os.freemem(),
+// 	"CPUUsage" : os.cpuUsage(),
+// 	"Inodes" : false,
+// 	"Bandwidth" : os.loadavg(0.01),
+//     "storage" : space.freeMegaBytes
+//     }
+//     console.log(data.address);
+    
