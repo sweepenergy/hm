@@ -1,30 +1,33 @@
 
     var os = require('os-utils');
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-    //var storage = require ("storage-device-info");
+    var storage = require ("storage-device-info");
     var auth_user_id = "a0c17ccb-542b-42b6-89ce-02510ef11f24";
     var auth_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcnlwdG9fZGF0YSI6IlUyRnNkR1ZrWDE5UHhTMzFWSG5DcFdOUlFPcVJRTmNSL1R1YjI3dDRtbnBzU3oxNWZqMGhBOTI4S01GZjRCb2pnalNLellxVEYzU3NXOEJXcE9wNy9Gb1NMS3U3KzJnVGhXdWY3enhpaC9STDdBYngrNnhJSVdxZHZoaU9rcHpDcFp3bTFCZ09TejZIV3FYTDZNV0hsaXdCbjR0MFc5b3dOWjV0MVNSSHcvNFJobFVkYi85TEtKdm1mOWRlU01lS1BNZC80ZGg2SWZtR21jME5oUFh2QjZBZFI0Qnc2NDR2R3BOb1ArTlZyWE56YzJRQkxTWVIxU2VaUTMrTTdReGxrS3pwTWhieEtwL09pNXFFZFNXWnVCalU3dmdxWmRJWTFXZkVialJYYkk3RHFvL3ZKdDhML1NPZzQxV2VpRlAxWG41VGVrVDVZMHVNUG1MN01JLzFzVE1TS0E2UjFSazFTU2ovVDNhMUFHd2tPK1NaU1orbllOeU1kSytDdmFRSC8yNCtYVGVWajhFSXZqUkVJSVk2dGc9PSIsInNlc3Npb25faWQiOiJhMGMxN2NjYi01NDJiLTQyYjYtODljZS0wMjUxMGVmMTFmMjQiLCJzZXNzaW9uX3Rva2VuIjoiNmY5MjA5NjgtZWQxOS00NzMzLWI4ZGUtNmM3NzRhZTQ1NWVhIiwic2Vzc2lvbl9zY29wZSI6eyJnbG9iYWwiOlsiZ2V0Il0sImxvY2FsIjpbInBvc3Quc3RyZWFtIiwicHV0LnN0cmVhbSIsInBvc3QuZGlyZWN0b3J5IiwicHV0LmRpcmVjdG9yeSJdfSwiaWF0IjoxNjM4MDcxMzc3LCJleHAiOjE2MzgxMTQ1Nzd9.vAw4jtHCJEE8U7DvkzH6nSye-mik9AuWVawOp8S9ufWPTlm6F9lluWY4OXOeCu6uFGHG2GmLuRPZUF2ExvGlI4qSHBhTImKKJ7TCl1YbBZPrEY8iGLDefrgrBqE0_-cjVA7o3rlbamMY7gUMyub77fig7Hz3zFfvH_aaGr10W6YSHyVTRP-zo3o0vnOCj9jjYZiK133lZVolZ0IpefRNacE_s25OWWeXXaoXM-jU1MQzpAITHBrqDa8diS5dRaTEQ7gLEwRGXE4V8cDEz2nv442189DHPjaD8fWUPmdNZdkphiL-GEAdqYmfdGhHQIZ7_lD-OK-TBhVJCoRJyv94PA";
     var time;
     var cpus;
-    var storage;
+    var freestorage;
     var memory;
     var address;
+    var directory_id;
+    var create = 0;
     GetMetrics();
 function GetMetrics(){
     CPU();
-    //Inodes();
+    Inodes();
     Memory();
     IPaddress();
-    //Storage();
+    freestorage=Storage();
     Time();
     var status = {
         "IPaddress": address,
         "Time": time
     };
     var metricinfo= {
-        "CPU" : ".20",
+        "CPU" : cpus,
         "Memory": memory,
-        "Inodes": "20"
+        "Inodes": "20",
+        "Storage": freestorage
 
     };
     console.log(metricinfo);
@@ -40,9 +43,9 @@ let currentDate = new Date();
 time = currentDate.getHours() + ":" + currentDate.getMinutes();
 }
 function CPU(){
-    os.cpuUsage(function(v){
+    cpus=os.cpuUsage(function(v){
        // console.log( 'CPU Usage (%): ' + v );
-        cpus = v;
+        return v;
        // console.log(cpus);
     });
 }
@@ -50,17 +53,19 @@ function Memory(){
     memory = os.freememPercentage();
 }
 function Inodes(){
-    exec("df -ih", (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
+    const { exec } = require("child_process");
+
+exec("df -ih", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`stderr: ${stderr}`);
+        return;
+    }
+    console.log(`stdout: ${stdout}`);
+});
 }
 function Storage(){
     storage.getPartitionSpace("/opt", function(error, space){
@@ -72,8 +77,8 @@ function Storage(){
             //This shows the storage space in megabytes
             console.log("Total Storage Space: " + space.totalMegaBytes + "\n");
             console.log("Free Storage Space: " + space.freeMegaBytes + "\n");
+            return space.freeMegaBytes;
         }
-        storage = space.freeMegaBytes;
     });
 }
 function IPaddress(){
@@ -94,10 +99,15 @@ for (var dev in ifaces) {
 }
 }
 function SendMetrics(metricinfo){
+    if(create == 0){
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "https://api.sweepapi.com/Directory", true);
+    var URL  = "https://api.sweepapi.com/directory/"+directory_id+"/stream";
+    xmlhttp.open("POST", URL, true);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify(metricinfo))
+    xmlhttp.send(JSON.stringify(metricinfo))}
+    else{
+
+    }
 }
 function SendStatus(status){
     var xmlhttp = new XMLHttpRequest();
@@ -107,34 +117,10 @@ function SendStatus(status){
     xmlhttp.send(JSON.stringify(status))
 }
 
-
-function ConnectToAPI(){
-    var data = JSON.stringify({
-        "email": "cgarcia311@ucmerced.edu",
-        "password": "Supers@yain2"
-      });
-      
-      var xhr = new XMLHttpRequest();
-      xhr.withCredentials = true;
-      
-      xhr.addEventListener("readystatechange", function() {
-        if(this.readyState === 4) {
-          //console.log(this.responseText);
-         let token= JSON.parse(this.responseText)
-          auth_token =token["jwt"];
-          console.log(auth_token);
-        }
-      });
-      
-      xhr.open("POST", "https://api.sweepapi.com/account/auth?app=https://app.facility-ops.com");
-      xhr.setRequestHeader("Content-Type", "application/json");
-      
-      xhr.send(data);
-    
-}
 function CreateDirectory(){
+    if(create  == 0){
     var data = JSON.stringify({
-        "name": address
+        "name": "MetricData"
       });
       
       var xhr = new XMLHttpRequest();
@@ -143,13 +129,18 @@ function CreateDirectory(){
       xhr.addEventListener("readystatechange", function() {
         if(this.readyState === 4) {
           console.log(this.responseText);
+          let ID = JSON.parse(this.responseText);
+          directory_id = ID["id"];
         }
       });
       let URL = "https://api.sweepapi.com/directory/home";
       xhr.open("POST", URL,true);
       xhr.setRequestHeader("Accept", "application/json");
-      xhr.setRequestHeader("Authorization", "Bearer"+auth_user_id); 
+      xhr.setRequestHeader("Authorization", "Bearer "+auth_token); 
       xhr.setRequestHeader("Content-Type", "application/json");
-      
       xhr.send(data);
+    }
+    else{
+        
+    }
 }
