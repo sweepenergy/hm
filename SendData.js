@@ -33,7 +33,8 @@ function GetMetrics(){
     console.log(metricinfo);
     console.log(status);
     //ConnectToAPI();
-    CreateDirectory();
+    if(create ==0){
+    CreateDirectory();}
     //SendMetrics(metricinfo);
     //SendStatus(status);
 };
@@ -118,7 +119,6 @@ function SendStatus(status){
 }
 
 function CreateDirectory(){
-    if(create  == 0){
     var data = JSON.stringify({
         "name": "MetricData"
       });
@@ -140,7 +140,4 @@ function CreateDirectory(){
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.send(data);
     }
-    else{
-        
-    }
-}
+

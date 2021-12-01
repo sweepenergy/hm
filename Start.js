@@ -3,13 +3,10 @@ setInterval(function(){
 var os = require('os-utils');
 
 var storage = require ("storage-device-info");
-
-
 //This gets the CPU Usage at a certain point
 os.cpuUsage(function(v){
     console.log('CPU Usage (%): ' + v+ '\n');
 });
-
 //This gets the CPU Free at a certain point 
 os.cpuFree(function(v){
     console.log('CPU Free (%): ' + v+ '\n');
@@ -27,7 +24,6 @@ console.log('Free Memmory: ' + os.freemem() + '\n')
 //This is the total free memmory percentage taken from CPU Usage and CPU Free
 console.log('Total Free Memmory (%): ' + os.freememPercentage() + '\n');
 
-
 //This gets the total storage and the free storage on the given machine
 storage.getPartitionSpace("/opt", function(error, space){
 
@@ -42,7 +38,6 @@ storage.getPartitionSpace("/opt", function(error, space){
         console.log("Free Storage Space: " + space.freeMegaBytes + "\n");
     }
 });
-    
 
 var
     // Local ip address that we're trying to calculate
@@ -51,8 +46,6 @@ var
     ,os = require('os')
     // Network interfaces
     ,ifaces = os.networkInterfaces();
-
-
 // Iterate over interfaces ...
 for (var dev in ifaces) {
 
@@ -66,8 +59,6 @@ for (var dev in ifaces) {
 
 // Print the result
 console.log('IP Address: ' + address + '\n');
-
-
 // This is for the INodes
 const { exec } = require("child_process");
 
@@ -82,8 +73,6 @@ exec("df -ih", (error, stdout, stderr) => {
     }
     console.log(`stdout: ${stdout}`);
 });
-
-
 }, 3000);
 
 // const data = { 
