@@ -3,7 +3,7 @@
     var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
     var storage = require ("storage-device-info");
     var auth_user_id = "a0c17ccb-542b-42b6-89ce-02510ef11f24";
-    var auth_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcnlwdG9fZGF0YSI6IlUyRnNkR1ZrWDE5UHhTMzFWSG5DcFdOUlFPcVJRTmNSL1R1YjI3dDRtbnBzU3oxNWZqMGhBOTI4S01GZjRCb2pnalNLellxVEYzU3NXOEJXcE9wNy9Gb1NMS3U3KzJnVGhXdWY3enhpaC9STDdBYngrNnhJSVdxZHZoaU9rcHpDcFp3bTFCZ09TejZIV3FYTDZNV0hsaXdCbjR0MFc5b3dOWjV0MVNSSHcvNFJobFVkYi85TEtKdm1mOWRlU01lS1BNZC80ZGg2SWZtR21jME5oUFh2QjZBZFI0Qnc2NDR2R3BOb1ArTlZyWE56YzJRQkxTWVIxU2VaUTMrTTdReGxrS3pwTWhieEtwL09pNXFFZFNXWnVCalU3dmdxWmRJWTFXZkVialJYYkk3RHFvL3ZKdDhML1NPZzQxV2VpRlAxWG41VGVrVDVZMHVNUG1MN01JLzFzVE1TS0E2UjFSazFTU2ovVDNhMUFHd2tPK1NaU1orbllOeU1kSytDdmFRSC8yNCtYVGVWajhFSXZqUkVJSVk2dGc9PSIsInNlc3Npb25faWQiOiJhMGMxN2NjYi01NDJiLTQyYjYtODljZS0wMjUxMGVmMTFmMjQiLCJzZXNzaW9uX3Rva2VuIjoiNmY5MjA5NjgtZWQxOS00NzMzLWI4ZGUtNmM3NzRhZTQ1NWVhIiwic2Vzc2lvbl9zY29wZSI6eyJnbG9iYWwiOlsiZ2V0Il0sImxvY2FsIjpbInBvc3Quc3RyZWFtIiwicHV0LnN0cmVhbSIsInBvc3QuZGlyZWN0b3J5IiwicHV0LmRpcmVjdG9yeSJdfSwiaWF0IjoxNjM4MDcxMzc3LCJleHAiOjE2MzgxMTQ1Nzd9.vAw4jtHCJEE8U7DvkzH6nSye-mik9AuWVawOp8S9ufWPTlm6F9lluWY4OXOeCu6uFGHG2GmLuRPZUF2ExvGlI4qSHBhTImKKJ7TCl1YbBZPrEY8iGLDefrgrBqE0_-cjVA7o3rlbamMY7gUMyub77fig7Hz3zFfvH_aaGr10W6YSHyVTRP-zo3o0vnOCj9jjYZiK133lZVolZ0IpefRNacE_s25OWWeXXaoXM-jU1MQzpAITHBrqDa8diS5dRaTEQ7gLEwRGXE4V8cDEz2nv442189DHPjaD8fWUPmdNZdkphiL-GEAdqYmfdGhHQIZ7_lD-OK-TBhVJCoRJyv94PA";
+    var auth_token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcnlwdG9fZGF0YSI6IlUyRnNkR1ZrWDEveTY2QnhmVzFKNjNsdExYL3diMTlWb2IxL1FaR1lKbVBidjZyNFY3N3RiKzlCaGRUTWtKcmx0WDdLQ3RjRVk2SjM5T3JMWFVSV0dKWGp3STVLUVQ4OUo1dzVZaGhhNHFodkFrbmV0MDVjZHo2d2xjY21GRFVxdUYxa1NQODVjbDRubTErWjl5Tmh1QXlnTzNHc3A0aHk3QVphQjJzV3lYQW9ZZXNFMHVGM0w0ZklYalBkV3RzNHE5RTNKMVNlOUlrdEdyLzROL0tTNXhyU2cvSHJxWUlpWm1sZFE2N3g2SnZmZjFjcjNiYVdFSktQVUF1bTlOWDN6NkNoTFFLYUFyN3crVU1rc0NJTFVSNDlUanIvUElwMzFyRVJyWlhPSklWb0NQamVXMmg5bmpSZHhJM1FWVGtqSkFTWGxzL2ZzbzIvREhIN0FLL1k3M1Fpa1ZOeXBmNWVWWUE5dU4xL0VZcz0iLCJzZXNzaW9uX2lkIjoiMTA0M2MzZGQtNGNhNi00ZDkxLWJhODAtM2YzYmEzNDlkNmI1Iiwic2Vzc2lvbl90b2tlbiI6IjNhYjAxNGZhLWUwMGYtNDgxYy04YjI4LTdkMGU1NjEzNGQzZSIsInNlc3Npb25fc2NvcGUiOnsiZ2xvYmFsIjpbImdldCIsInBvc3QiLCJwdXQiXSwibG9jYWwiOltdfSwiaWF0IjoxNjM4MzIwMzc2fQ.T9I8nHQw5cSDHHUHvueivaeQPy54feBuhhhZueoQ4oMtQlLNS6xofTVW0pJv3iX0kpI1DOTJXSEDw1BlGXSN6tKCI7UeQ678UCSnb6hnTg5CwEQ6WHy8b6plMaY0KX_LBaMzr3dvWCJwqpPoxuYGebvnfxsTq7yvDO4e5cBOmWwmBWRfq5pipjD4Uevr_5-1Xcd1SUxe1qOrfg7BP4u6TnLovgUsvrUD6kcJNahrBCvzErxKruxMADe5WNTasIELPMsSqYCduXzgtL2Q9uDEwEUWWY7asRj9w9FfCSo8nNU93BVNSOT4v0vi3d5dWHjHE9P7zC4SDiBjeGcAe9Wv8g";
     var time;
     var cpus;
     var freestorage;
@@ -12,6 +12,9 @@
     var directory_id;
     var create = 0;
     GetMetrics();
+    function startup(){
+        CreateMainDirectory();
+    }
 function GetMetrics(){
     CPU();
     Inodes();
@@ -27,17 +30,16 @@ function GetMetrics(){
         "CPU" : cpus,
         "Memory": memory,
         "Inodes": "20",
-        "Storage": freestorage
+        "Storage": freestorage,
+        "Bandwidth": "30"
 
     };
     console.log(metricinfo);
     console.log(status);
-    //ConnectToAPI();
     if(create ==0){
-    CreateDirectory();}
-    //SendMetrics(metricinfo);
+    SendMetrics(cpus,time,"CPU");
     //SendStatus(status);
-};
+};}
 
 function Time(){
 let currentDate = new Date();
@@ -100,16 +102,20 @@ for (var dev in ifaces) {
 }
 }
 function SendMetrics(metricinfo){
-    if(create == 0){
-    var xmlhttp = new XMLHttpRequest();
-    var URL  = "https://api.sweepapi.com/directory/"+directory_id+"/stream";
-    xmlhttp.open("POST", URL, true);
-    xmlhttp.setRequestHeader("Content-Type", "application/json");
-    xmlhttp.send(JSON.stringify(metricinfo))}
-    else{
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+let URL = "https://api.sweepapi.com/directory/"+directory_id+"/stream"
+xhr.open("POST", URL);
+
+xhr.send(metricinfo);
     }
-}
+
 function SendStatus(status){
     var xmlhttp = new XMLHttpRequest();
     let URL = "https://api.sweepapi.com/Directory" +
@@ -117,12 +123,28 @@ function SendStatus(status){
     xmlhttp.setRequestHeader("Content-Type", "application/json", 'Authorization', auth_token);
     xmlhttp.send(JSON.stringify(status))
 }
+function CreateStream(){
+var data = "{\n    \"directory_id\": \"directory_id\",\n    \"name\": \"Tasty Fresh Ball\",\n    \"ts\": [\n        {\n            \"id\": \"voltage_b\",\n            \"name\": \"Voltage b\",\n            \"description\": \"Voltage b amps\",\n            \"unit\": \"volts\",\n            \"type\": \"number\"\n        },\n        {\n            \"id\": \"current_b\",\n            \"name\": \"Current b\",\n            \"description\": \"Current b amps\",\n            \"unit\": \"amps\",\n            \"type\": \"number\"\n        },\n        {\n            \"id\": \"log_maintenance\",\n            \"name\": \"Maintenance Log\",\n            \"description\": \"Maintenance Log over time\",\n            \"unit\": \"unitless\",\n            \"type\": \"text\"\n        }\n    ]\n}";
 
-function CreateDirectory(){
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "https://api.sweepapi.com/directory/directory_id/stream");
+xhr.setRequestHeader("Authorization", "Bearer "+auth_token); 
+
+xhr.send(data);
+}
+function CreateSubDirectory(){
     var data = JSON.stringify({
-        "name": "MetricData"
+        "name": address
       });
-      
+      let URL = "https://api.sweepapi.com/directory/"+ main_directory_id;
       var xhr = new XMLHttpRequest();
       xhr.withCredentials = true;
       
@@ -133,6 +155,36 @@ function CreateDirectory(){
           directory_id = ID["id"];
         }
       });
+      
+      xhr.open("POST", URL);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("Authorization", "Bearer "+auth_token); 
+      
+      xhr.send(data);
+}
+
+
+function CreateMainDirectory(){
+    var data = JSON.stringify({
+        "name": "ServerMetrics"
+      });
+      
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+      
+      xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+          console.log(this.responseText);
+          let ID = JSON.parse(this.responseText);
+          main_directory_id = ID[1];
+          console.log(main_directory_id);
+          if(main_directory_id == "error_duplicate_name"){
+            console.log(main_directory_id);
+            //MainDirectoryGet();
+        }
+
+        }
+      });
       let URL = "https://api.sweepapi.com/directory/home";
       xhr.open("POST", URL,true);
       xhr.setRequestHeader("Accept", "application/json");
@@ -141,3 +193,20 @@ function CreateDirectory(){
       xhr.send(data);
     }
 
+function MainDirectoryGet(){
+ var xhr = new XMLHttpRequest();
+ xhr.withCredentials = true;
+ xhr.addEventListener("readystatechange", function() {
+  if(this.readyState === 4) {
+    console.log(this.responseText);
+    let DirectoryInfo = JSON.parse(this.reponseText);
+    let main = DirectioryInfo["Directory"];
+    main_directory_id = main["id"];
+  }
+});
+
+xhr.open("GET", "https://api.sweepapi.com/directory/home");
+xhr.setRequestHeader("Authorization", "Bearer "+auth_token);
+
+xhr.send();
+    }
