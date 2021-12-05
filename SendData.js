@@ -18,14 +18,15 @@
     IPaddress();
      CreateMainDirectory()
     }
-    
-
+    setTimeout(function(){setInterval(GetMetrics,5000)},3000);
+    //setTimeout(GetMetrics,3000);
 function GetMetrics(){
-   // CPU();
-    //Inodes();
-    //Memory();
-    //freestorage=Storage();
-    Time();
+    console.log(streamid)
+    CPU();
+    Inodes();
+    Memory();
+    freestorage=Storage();
+   // Time();
     var status = {
         "IPaddress": address,
         "Time": timestamp
@@ -38,10 +39,11 @@ function GetMetrics(){
         "Bandwidth": "30"
 
     };
-    SendMetrics("CPU", cpus);
-    SendMetrics("memory",memory);
-    SendMetrics("inodes","20");
-    SendMetrics("storage",freestorage);
+    setTimeout(function () {
+   SendMetrics("CPU", cpus)
+    SendMetrics("memory",memory)
+   SendMetrics("inodes","20")
+    SendMetrics("Storage",freestorage)}, 2500)
 
 }
 function Time(){
@@ -50,14 +52,17 @@ function Time(){
     console.log(date);
 }
 function CPU(){
-    cpus=os.cpuUsage(function(v){
-       // console.log( 'CPU Usage (%): ' + v );
-        return v;
-       // console.log(cpus);
+    var os = require('os-utils');
+    os.cpuUsage(function(v){
+       console.log( 'CPU Usage (%): ' + v );
+       //console.log(cpus);
+       cpus = v;
     });
 }
 function Memory(){
+    var os = require('os-utils');
     memory = os.freememPercentage();
+    console.log(memory + "memory");
 }
 function Inodes(){
     const { exec } = require("child_process");
@@ -84,7 +89,8 @@ function Storage(){
             //This shows the storage space in megabytes
             console.log("Total Storage Space: " + space.totalMegaBytes + "\n");
             console.log("Free Storage Space: " + space.freeMegaBytes + "\n");
-            return space.freeMegaBytes;
+
+            freestorage =space.freeMegaBytes;
         }
     });
 }
@@ -119,7 +125,7 @@ function SendMetrics(paramtext, sample){
           console.log(this.responseText);
         }
       });
-      let URL = "https://api.sweepapi.com/stream/stream_id/ts/"+paramtext+"/dataset/one"
+      let URL = "https://api.sweepapi.com/stream/"+streamid+"/ts/"+paramtext+"/dataset/one"
       xhr.open("POST", URL);
       xhr.setRequestHeader("Content-Type", "application/json");
       xhr.setRequestHeader("Authorization", "Bearer "+auth_token);
@@ -280,7 +286,7 @@ xhr.send();
 }
  function CreateMainDirectory(){
     var data = JSON.stringify({
-        "name": "test"
+        "name": "ServerMetrics"
       });
       
       var xhr = new XMLHttpRequest();
