@@ -1,14 +1,12 @@
-console.log("Congratulations! You got node.js to run" + '\n');
+
+setInterval(function(){
 var os = require('os-utils');
 
 var storage = require ("storage-device-info");
-
-
 //This gets the CPU Usage at a certain point
 os.cpuUsage(function(v){
     console.log('CPU Usage (%): ' + v+ '\n');
 });
-
 //This gets the CPU Free at a certain point 
 os.cpuFree(function(v){
     console.log('CPU Free (%): ' + v+ '\n');
@@ -25,7 +23,6 @@ console.log('Free Memmory: ' + os.freemem() + '\n')
 
 //This is the total free memmory percentage taken from CPU Usage and CPU Free
 console.log('Total Free Memmory (%): ' + os.freememPercentage() + '\n');
-
 
 //This gets the total storage and the free storage on the given machine
 storage.getPartitionSpace("/opt", function(error, space){
@@ -66,9 +63,27 @@ for (var dev in ifaces) {
 // Print the result
 console.log('IP Address: ' + address + '\n');
 
+var
+    // Local ip address that we're trying to calculate
+    address
+    // Provides a few basic operating-system related utility functions (built-in)
+    ,os = require('os')
+    // Network interfaces
+    ,ifaces = os.networkInterfaces();
+// Iterate over interfaces ...
+for (var dev in ifaces) {
 
+    // ... and find the one that matches the criteria
+    var iface = ifaces[dev].filter(function(details) {
+        return details.family === 'IPv4' && details.internal === false;
+    });
 
-//this uses the linux command df -ih
+    if(iface.length > 0) address = iface[0].address;
+}
+
+// Print the result
+console.log('IP Address: ' + address + '\n');
+// This is for the INodes
 const { exec } = require("child_process");
 
 exec("df -ih", (error, stdout, stderr) => {
@@ -82,3 +97,16 @@ exec("df -ih", (error, stdout, stderr) => {
     }
     console.log(`stdout: ${stdout}`);
 });
+}, 3000);
+
+// const data = { 
+//     "IP": address,
+//     "totalmemory": 22,
+//     "freememory": os.freemem(),
+// 	"CPUUsage" : os.cpuUsage(),
+// 	"Inodes" : false,
+// 	"Bandwidth" : os.loadavg(0.01),
+//     "storage" : space.freeMegaBytes
+//     }
+//     console.log(data.address);
+    

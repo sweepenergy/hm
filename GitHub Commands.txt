@@ -23,18 +23,21 @@ sudo apt install npm                   - If you have already done the os-utils t
 npm install storage-device-info
 
 
-How to get ip address:
+How ot get ip address:
 https://www.semicolonworld.com/question/44875/get-local-ip-address-in-node-js
 
 
-INodes:
+INodes and running linux commands in nodejs:
 https://stackoverflow.com/questions/653096/how-to-free-inode-usage
-
+https://code-maven.com/system-information-about-a-file-or-directory-in-nodejs
 https://www.codegrepper.com/code-examples/shell/how+to+run+linux+command+in+node+js
 
-Linux commands to get the INodes:      - use the link get the script, one above
 df -i
 df -ih
+
+
+Requesting API 
+https://docs.newrelic.com/docs/apm/agents/nodejs-agent/api-guides/nodejs-agent-api/#request-names
 
 
 How to run Nodejs:
